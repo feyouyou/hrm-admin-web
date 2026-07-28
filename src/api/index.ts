@@ -1,4 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { RespType } from "./types";
+import { delay, getRandom } from "@src/common/utils";
 
 const instance = axios.create({
   baseURL: "/api",
@@ -33,8 +35,13 @@ instance.interceptors.response.use(
 
 const request = async <T>(config: AxiosRequestConfig) => {
   try {
-    const respData = await instance<unknown, T>(config);
-    return respData;
+    await delay(getRandom(500, 1000));
+    const respData = await instance<unknown, RespType<T>>(config);
+    // 业务码为错误标识，直接抛出错误让外部处理
+    if (respData.code === 1) {
+      throw respData.msg || "网络错误";
+    }
+    return respData.data;
   } catch (error) {
     throw error;
   }

@@ -1,11 +1,14 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { Login } from "@src/api/apis";
 
+// 尝试获取本地用户信息
+const userProfile = JSON.parse(localStorage.getItem("userProfile") || "{}");
+
 export const userInfoSlice = createSlice({
   name: "userInfo",
   initialState: {
-    account: "",
-    username: "",
+    account: userProfile.account || "",
+    username: userProfile.username || "",
     isLoading: false,
     isError: false,
   },
@@ -17,17 +20,17 @@ export const userInfoSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchUserInfo.pending, (state) => {
+      .addCase(login.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
       })
-      .addCase(fetchUserInfo.fulfilled, (state, action) => {
-        state.account = action.payload.account;
-        state.username = action.payload.username;
+      .addCase(login.fulfilled, (state, action) => {
+        state.account = action.payload.account || "";
+        state.username = action.payload.username || "";
         state.isLoading = false;
         state.isError = false;
       })
-      .addCase(fetchUserInfo.rejected, (state) => {
+      .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
       });
@@ -36,14 +39,10 @@ export const userInfoSlice = createSlice({
 
 export const { setUserInfo } = userInfoSlice.actions;
 
-export const fetchUserInfo = createAsyncThunk(
-  "userInfo/fetchUserInfo",
+export const login = createAsyncThunk(
+  "userInfo/login",
   async (params: { account: string; password: string }) => {
     const loginResp = await Login(params.account, params.password);
-    console.log(loginResp);
-    return {
-      account: (loginResp as any).data.account,
-      username: (loginResp as any).data.username,
-    };
+    return loginResp;
   },
 );

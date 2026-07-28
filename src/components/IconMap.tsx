@@ -4,6 +4,15 @@ import {
   LockOutlined,
   MobileOutlined,
   UserOutlined,
+  AccountBookOutlined,
+  AimOutlined,
+  ApartmentOutlined,
+  DashboardOutlined,
+  InsertRowAboveOutlined,
+  LineChartOutlined,
+  SmileOutlined,
+  TeamOutlined,
+  StarOutlined,
 } from "@ant-design/icons";
 
 export default {
@@ -12,4 +21,13 @@ export default {
   LockIcon: <LockOutlined />,
   MobileIcon: <MobileOutlined />,
   CodeIcon: <CodeSandboxOutlined />,
+  Dashboard: <DashboardOutlined />,
+  Attendance: <LineChartOutlined />,
+  Team: <TeamOutlined />,
+  Department: <ApartmentOutlined />,
+  Level: <AimOutlined />,
+  Assessment: <InsertRowAboveOutlined />,
+  Salary: <AccountBookOutlined />,
+  RewardAndPunishment: <StarOutlined />,
+  BarChart: <SmileOutlined />,
 };
