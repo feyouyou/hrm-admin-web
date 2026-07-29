@@ -35,7 +35,7 @@ instance.interceptors.response.use(
 
 const request = async <T>(config: AxiosRequestConfig) => {
   try {
-    await delay(getRandom(500, 1000));
+    await delay(getRandom(500, 700));
     const respData = await instance<unknown, RespType<T>>(config);
     // 业务码为错误标识，直接抛出错误让外部处理
     if (respData.code === 1) {

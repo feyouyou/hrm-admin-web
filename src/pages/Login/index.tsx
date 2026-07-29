@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Input, message, notification } from "antd";
 import { loginValidate } from "@common/validate";
 import { DispatchType, StoreStateType } from "@src/store";
-import { login } from "@src/store/slices/userInfo";
+import { login, setUserInfo } from "@src/store/slices/userInfo";
 import { GetPermissionList } from "@src/api/apis";
 import IconMap from "@src/components/IconMap";
 import "./index.scss";
@@ -23,11 +23,13 @@ export default function Login() {
 
   const handleSubmitUserInfo = async (values: any) => {
     try {
-      // TODO: 这里加载permissionListResp时，按钮loading有问题，permissionListResp并没有展示loading效果，导致按钮感觉有卡顿
       const loginResp = await dispatch(login(values)).unwrap();
+      // 这里手动执行一下loading，方式拿到了用户信息后就停止loading，因为权限列表请求也需要继续loading
+      dispatch(setUserInfo({ isLoading: true }));
       const permissionListResp = await GetPermissionList(
         loginResp.identity || 0,
       );
+      dispatch(setUserInfo({ isLoading: false }));
       localStorage.setItem("userProfile", JSON.stringify(loginResp));
       localStorage.setItem(
         "permissionsList",

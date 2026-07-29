@@ -13,9 +13,11 @@ export const userInfoSlice = createSlice({
     isError: false,
   },
   reducers: {
-    setUserInfo(state, action: PayloadAction<typeof state>) {
-      state.account = action.payload.account;
-      state.username = action.payload.username;
+    setUserInfo(state, action: PayloadAction<Partial<typeof state>>) {
+      return {
+        ...state,
+        ...action.payload,
+      };
     },
   },
   extraReducers(builder) {
