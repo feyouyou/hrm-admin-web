@@ -17,6 +17,7 @@ export interface LoginResponse {
   id?: string; // 用户唯一标识
   identity?: 0 | 1; // 1-管理员 0-员工
   department?: string; // 用户所在部门
+  avatar?: string;
 }
 
 /** 权限列表 */

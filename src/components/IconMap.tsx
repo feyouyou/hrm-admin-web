@@ -10,9 +10,12 @@ import {
   DashboardOutlined,
   InsertRowAboveOutlined,
   LineChartOutlined,
-  SmileOutlined,
   TeamOutlined,
-  StarOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  DatabaseOutlined,
+  BarChartOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 
 export default {
@@ -28,6 +31,9 @@ export default {
   Level: <AimOutlined />,
   Assessment: <InsertRowAboveOutlined />,
   Salary: <AccountBookOutlined />,
-  RewardAndPunishment: <StarOutlined />,
-  BarChart: <SmileOutlined />,
+  RewardAndPunishment: <DatabaseOutlined />,
+  BarChart: <BarChartOutlined />,
+  LeftMenuArrow: <MenuFoldOutlined />,
+  RightMenuArrow: <MenuUnfoldOutlined />,
+  LogoutOut: <LogoutOutlined />,
 };

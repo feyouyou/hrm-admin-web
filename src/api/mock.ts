@@ -14,6 +14,7 @@ Mock.mock("/api/login", "post", (options): RespType<LoginResponse> => {
         id: "238hed8h84d", // 用户唯一标识
         identity: 1, // 0-员工 1-管理员
         department: "行政", // 用户所在部门
+        avatar: "https://avatars.githubusercontent.com/u/67512293",
       },
     };
   }
@@ -27,6 +28,7 @@ Mock.mock("/api/login", "post", (options): RespType<LoginResponse> => {
         id: "kdjf3i3ff", // 用户唯一标识
         identity: 0, // 0-员工 1-管理员
         department: "IT", // 用户所在部门
+        avatar: "https://avatars.githubusercontent.com/u/67512294",
       },
     };
   }

@@ -31,12 +31,12 @@ const router = createBrowserRouter([
           { path: "/salary", element: <Salary /> },
           { path: "/rewardRecord", element: <RewardRecord /> },
           { path: "/attendanceInfo", element: <AttendanceInfo /> },
+          { path: "*", element: <NotFound /> },
         ],
       },
     ],
   },
   { path: "/login", element: <Login /> },
-  { path: "*", element: <NotFound /> },
 ]);
 
 export default router;

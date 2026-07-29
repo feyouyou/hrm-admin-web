@@ -1,12 +1,22 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router";
-import { GetProp, Menu, MenuProps } from "antd";
+import { GetProp, Layout, Menu, MenuProps } from "antd";
 import { PermissionListResponse } from "@src/api/types";
+import Logo from "@common/images/avatar.webp";
 import IconMap from "../IconMap";
+import "./index.scss";
+
+const { Sider } = Layout;
 
 type MenuItem = GetProp<MenuProps, "items">[number];
 
-export default function SiderBar() {
+interface SiderBarProps {
+  collapsed: boolean;
+}
+
+export default function SiderBar(props: SiderBarProps) {
+  const { collapsed } = props;
+
   const navigate = useNavigate();
   const location = useLocation();
   const permissionsList: PermissionListResponse["permissionList"] = JSON.parse(
@@ -29,10 +39,23 @@ export default function SiderBar() {
   });
 
   return (
-    <Menu
-      defaultSelectedKeys={[`${curNavIndex}`]}
+    <Sider
+      trigger={null}
+      collapsible
+      collapsed={collapsed}
       theme="light"
-      items={navList}
-    />
+      style={{ borderRight: "1px solid #eee" }}
+    >
+      <div className="logo-wrapper">
+        <img src={Logo} alt="" className="logo" />
+        {!collapsed && <div className="system-name">HRM SYSTEM</div>}
+      </div>
+      <Menu
+        mode="inline"
+        defaultSelectedKeys={[`${curNavIndex}`]}
+        items={navList}
+        style={{ border: 0 }}
+      />
+    </Sider>
   );
 }

@@ -9,6 +9,7 @@ export const userInfoSlice = createSlice({
   initialState: {
     account: userProfile.account || "",
     username: userProfile.username || "",
+    avatar: "",
     isLoading: false,
     isError: false,
   },
@@ -29,6 +30,7 @@ export const userInfoSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.account = action.payload.account || "";
         state.username = action.payload.username || "";
+        state.avatar = action.payload.avatar || "";
         state.isLoading = false;
         state.isError = false;
       })
