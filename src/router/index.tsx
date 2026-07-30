@@ -13,7 +13,7 @@ import Staff from "@src/pages/Staff";
 import NotFound from "@src/pages/NotFound";
 import AuthGuard from "@src/components/AuthGuard";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,

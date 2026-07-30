@@ -5,7 +5,8 @@ import router from "./router";
 import { store } from "./store";
 import "./index.scss";
 
-import "./api/mock";
+import "./api/mockUserInfo";
+import "./api/mockStaffAmount";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 

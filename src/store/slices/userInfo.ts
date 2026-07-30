@@ -9,7 +9,7 @@ export const userInfoSlice = createSlice({
   initialState: {
     account: userProfile.account || "",
     username: userProfile.username || "",
-    avatar: "",
+    avatar: userProfile.avatar,
     isLoading: false,
     isError: false,
   },

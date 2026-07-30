@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { Avatar, Button, Dropdown, Layout, Menu, MenuProps, theme } from "antd";
+import { Avatar, Button, Dropdown, Layout, MenuProps, theme } from "antd";
 import { StoreStateType } from "@src/store";
 import IconMap from "../IconMap";
 import "./index.scss";
@@ -60,7 +60,7 @@ export default function ContentArea(ContentArea: ContentAreaProps) {
         <Dropdown menu={{ items }}>
           <div className="user-info-wrapper">
             {userInfo.username}&nbsp;
-            <Avatar size={30} src={userInfo.avatar} />
+            <Avatar size={30} src={userInfo.avatar || undefined} />
           </div>
         </Dropdown>
       </Header>
@@ -68,8 +68,6 @@ export default function ContentArea(ContentArea: ContentAreaProps) {
       <Content
         style={{
           margin: "24px 16px",
-          padding: 24,
-          background: colorBgContainer,
           borderRadius: borderRadiusLG,
         }}
       >

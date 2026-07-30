@@ -6,7 +6,7 @@ const isDev = process.env.NODE_ENV === "development";
 
 module.exports = {
   mode: isDev ? "development" : "production",
-  devtool: false,
+  devtool: "source-map",
   entry: {
     index: "./src/index.tsx",
   },

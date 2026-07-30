@@ -23,9 +23,34 @@ export interface LoginResponse {
 /** 权限列表 */
 export interface PermissionListResponse {
   permissionList: {
-    _id: string;
     icon: string;
     text: string;
     route: string;
+  }[];
+}
+
+/** 员工信息 */
+export interface StaffDataResponse {
+  total: number; // 总人数
+  /** 入职年限分布 */
+  onboardingTimeData: {
+    one: number; // 入职一年人数
+    two: number; // 入职两年人数
+    three: number; // 入职三年人数
+  };
+  // 性别分布
+  genderList: {
+    name: "男" | "女"; // 性别
+    value: number; // 男性总数
+  }[];
+  /** 年龄列表 */
+  ageMap: {
+    xData: string[];
+    yData: number[];
+  };
+  /** 工龄最大的10人 */
+  wordingYearsMaps: {
+    name: string; // 姓名
+    department: string; // 部门
   }[];
 }
