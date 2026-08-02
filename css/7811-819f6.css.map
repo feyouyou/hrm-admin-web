@@ -1,0 +1,1 @@
+{"version":3,"file":"css/7811-819f6.css","mappings":"AAAA,qBACE,aACA,uBACA,mBACA,Y","sources":["webpack://hrm-admin-web/./src/pages/NotFound/index.scss"],"sourcesContent":[".not-found-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n}\n"],"names":[],"sourceRoot":""}
