@@ -9,11 +9,15 @@ interface DrawerComp {
   reloadList: any;
   isOpen: boolean;
   editingStaff?: GetStaffListRepsponse["staffList"][0];
+  pageInfo: {
+    pageNumber: number;
+    pageSize: number;
+  };
   onClickClose: () => void;
 }
 
 const DrawerComp = (props: DrawerComp) => {
-  const { isOpen, editingStaff, onClickClose } = props;
+  const { isOpen, editingStaff, pageInfo, onClickClose } = props;
 
   //- 关闭弹窗
   const handleClose = () => {
@@ -29,7 +33,11 @@ const DrawerComp = (props: DrawerComp) => {
       onClose={handleClose}
       keyboard={true}
     >
-      <DrawerForm editingStaff={editingStaff} onSubmitSuccess={handleClose} />
+      <DrawerForm
+        editingStaff={editingStaff}
+        onSubmitSuccess={handleClose}
+        pageInfo={pageInfo}
+      />
     </Drawer>
   );
 };

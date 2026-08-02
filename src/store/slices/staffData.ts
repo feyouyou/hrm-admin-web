@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { GetStaffList } from "@src/api/apis";
-import { GetStaffListRepsponse } from "@src/api/types";
+import { GetStaffListRepsponse, GetStaffListRequest } from "@src/api/types";
 
 type StaffDataSlice = Partial<
   {
@@ -51,7 +51,7 @@ export const { setStaffData } = staffDataSlice.actions;
 
 export const fetchStaffList = createAsyncThunk(
   "staffList/fetchStaffList",
-  async (params: { pageSize: number }) => {
+  async (params: GetStaffListRequest) => {
     const staffListResp = await GetStaffList(params);
     return {
       staffList: staffListResp.staffList,

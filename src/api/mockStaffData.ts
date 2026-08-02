@@ -8,25 +8,39 @@ Mock.mock(
   "/api/getStaff",
   "post",
   (options): RespType<GetStaffListRepsponse> => {
-    const bodyData: GetStaffListRequest = JSON.parse(options.body);
+    const { pageSize, searchParams }: GetStaffListRequest = JSON.parse(
+      options.body,
+    );
+
+    const isSearch =
+      searchParams?.userName || searchParams?.level || searchParams?.department;
 
     return {
       code: 0,
       msg: "获取员工列表成功",
       data: {
-        staffTotal: 100,
-        staffList: new Array(bodyData.pageSize).fill(1).map(() => {
+        staffTotal: isSearch ? 5 : 100,
+        staffList: new Array(isSearch ? 5 : pageSize).fill(1).map(() => {
           return {
             id: Mock.mock("@word(10)"),
             identity: getRandom(0, 2),
             level: {
               levelName: "T1‑1",
-              levelDescription: ["外包", "正式"][getRandom(0, 2)],
+              levelDescription: searchParams?.level
+                ? searchParams?.level
+                : ["外包", "正式"][getRandom(0, 2)],
             },
-            userName: Mock.mock("@cname"),
+            userName: searchParams?.userName
+              ? [
+                  searchParams?.userName + Mock.mock("@cname"),
+                  Mock.mock("@cname") + searchParams?.userName,
+                ][getRandom(0, 2)]
+              : Mock.mock("@cname"),
             accountName: Mock.mock("@word"),
             department: {
-              departmentName: departmentList[Math.floor(Math.random() * 5)],
+              departmentName: searchParams?.department
+                ? searchParams?.department
+                : departmentList[Math.floor(Math.random() * 5)],
               departmentLeader: Mock.mock("@cname"),
             },
             education: getRandom(0, 6),

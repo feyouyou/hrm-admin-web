@@ -10,11 +10,15 @@ import { useDispatch } from "react-redux";
 import { DispatchType } from "@src/store";
 
 interface DrawerFormProps {
+  pageInfo: {
+    pageNumber: number;
+    pageSize: number;
+  };
   editingStaff?: GetStaffListRepsponse["staffList"][0];
   onSubmitSuccess?: () => void;
 }
 
-interface StaffFormValues {
+export interface StaffFormValues {
   userName: string;
   level: string;
   department: string;
@@ -26,7 +30,7 @@ interface StaffFormValues {
 }
 
 export default function DrawerForm(props: DrawerFormProps) {
-  const { editingStaff, onSubmitSuccess } = props;
+  const { editingStaff, pageInfo, onSubmitSuccess } = props;
   // 是否正在提交中，加载使用
   const [isSubmiting, setIsSubmiting] = useState(false);
 
@@ -68,7 +72,7 @@ export default function DrawerForm(props: DrawerFormProps) {
         });
         message.success("修改成功");
         onSubmitSuccess?.();
-        dispatch(fetchStaffList({ pageSize: 10 }));
+        dispatch(fetchStaffList({ pageSize: pageInfo.pageSize }));
       } catch (error) {
         message.error("修改失败");
       }
@@ -87,7 +91,7 @@ export default function DrawerForm(props: DrawerFormProps) {
         });
         message.success("添加成功");
         onSubmitSuccess?.();
-        dispatch(fetchStaffList({ pageSize: 10 }));
+        dispatch(fetchStaffList({ pageSize: pageInfo.pageSize }));
       } catch (error) {
         message.error("添加失败");
       }
@@ -151,7 +155,7 @@ export default function DrawerForm(props: DrawerFormProps) {
           <Input placeholder="请输入姓名" />
         </Form.Item>
         <Form.Item
-          label="职位"
+          label="职位类型"
           name="level"
           required
           rules={[{ required: true, message: "请选择职位类型" }]}

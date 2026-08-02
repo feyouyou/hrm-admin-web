@@ -3,6 +3,9 @@
 //   code: 0 | 1; // 业务码，0代表请求成功，1代表请求失败
 //   msg: string; // 请求结果描述 或 错误消息
 //   data: {}; // 业务数据
+
+import { StaffFormValues } from "@src/pages/Staff/components/DrawerForm";
+
 // }
 export interface RespType<T> {
   code: 0 | 1;
@@ -57,6 +60,7 @@ export interface StaffAnalysisResponse {
 
 export interface GetStaffListRequest {
   pageSize: number;
+  searchParams?: StaffFormValues;
 }
 
 /** 用户列表 */

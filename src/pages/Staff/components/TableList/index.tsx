@@ -30,7 +30,7 @@ export default function TableList(props: TableListProps) {
       align: "center",
     },
     {
-      title: "职位",
+      title: "职位类型",
       dataIndex: "level",
       align: "center",
       render: (data: any) => (

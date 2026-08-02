@@ -1,5 +1,6 @@
 import Mock from "mockjs";
 import { LoginResponse, PermissionListResponse, RespType } from "./types";
+import { routeList } from "@src/router";
 
 // 用户登录
 Mock.mock("/api/login", "post", (options): RespType<LoginResponse> => {
@@ -53,53 +54,13 @@ Mock.mock(
         code: 0,
         msg: "success",
         data: {
-          permissionList: [
-            {
-              icon: "Dashboard",
-              text: "Dashboard",
-              route: "/dashboard",
-            },
-            {
-              icon: "Attendance",
-              text: "出勤统计",
-              route: "/attendance",
-            },
-            {
-              icon: "Team",
-              text: "员工",
-              route: "/staff",
-            },
-            {
-              icon: "Department",
-              text: "部门",
-              route: "/department",
-            },
-            {
-              icon: "Level",
-              text: "职级",
-              route: "/level",
-            },
-            {
-              icon: "Assessment",
-              text: "绩效考核",
-              route: "/assessment",
-            },
-            {
-              icon: "Salary",
-              text: "调薪记录",
-              route: "/salary",
-            },
-            {
-              icon: "RewardAndPunishment",
-              text: "奖惩记录",
-              route: "/rewardRecord",
-            },
-            {
-              icon: "BarChart",
-              text: "考勤信息",
-              route: "/attendanceInfo",
-            },
-          ],
+          permissionList: routeList.map((item: any) => {
+            return {
+              icon: item.icon,
+              text: item.label,
+              route: item.path,
+            };
+          }),
         },
       };
     }
@@ -110,14 +71,9 @@ Mock.mock(
       data: {
         permissionList: [
           {
-            icon: "Dashboard",
-            text: "Dashboard",
-            route: "/dashboard",
-          },
-          {
-            icon: "Attendance",
-            text: "出勤统计",
-            route: "/attendance",
+            icon: routeList[0].icon,
+            text: routeList[0].label,
+            route: routeList[0].path,
           },
         ],
       },

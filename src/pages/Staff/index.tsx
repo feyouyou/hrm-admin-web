@@ -6,6 +6,7 @@ import { fetchStaffList } from "@src/store/slices/staffData";
 import { GetStaffListRepsponse } from "@src/api/types";
 import TableList from "./components/TableList";
 import DrawerComp from "./components/DrawerComp";
+import SearchForm from "./components/SearchForm";
 import "./index.scss";
 
 export default function Staff() {
@@ -58,6 +59,7 @@ export default function Staff() {
 
   return (
     <div className="staff-container">
+      <SearchForm pageInfo={pageInfo} />
       <TableList
         staffList={staffData.staffList || []}
         pageInfo={pageInfo}
@@ -79,6 +81,7 @@ export default function Staff() {
         editingStaff={editingStaff}
         reloadList={undefined}
         isOpen={isOpen}
+        pageInfo={pageInfo}
         onClickClose={() => setIsOpen(false)}
       />
     </div>
