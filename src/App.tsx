@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import { Layout } from "antd";
+import SiderBar from "./components/SiderBar";
+import ContentArea from "./components/ContentArea";
 import "./App.scss";
-import { Outlet, useNavigate } from "react-router";
 
 export default function App() {
-  const navigate = useNavigate();
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div>
-      <button onClick={() => navigate("/login")}>login</button>
-      <button onClick={() => navigate("/dashboard")}>dashboard</button>
-      <hr />
-      <Outlet />
-    </div>
+    <Layout style={{ minHeight: "100vh" }}>
+      <SiderBar collapsed={collapsed} />
+      <ContentArea
+        collapsed={collapsed}
+        onClickCollapsedBtn={() => setCollapsed(!collapsed)}
+      />
+    </Layout>
   );
 }

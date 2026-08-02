@@ -1,0 +1,19 @@
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+  border-radius: 10px;
+}
+
+.system-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0af;
+}
