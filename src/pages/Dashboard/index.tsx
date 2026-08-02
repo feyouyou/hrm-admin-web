@@ -4,7 +4,7 @@ import { Spin } from "antd";
 import { DispatchType, StoreStateType } from "@src/store";
 import StaffAmount from "./components/StaffAmount";
 import OldStaffTable from "./components/OldStaffTable";
-import { fetchStaffData } from "@src/store/slices/staffData";
+import { fetchStaffAnalysis } from "@src/store/slices/staffAnalyze";
 import PieChart from "./components/PieChart";
 import ColumnChart from "./components/ColumnChart";
 import "./index.scss";
@@ -12,17 +12,17 @@ import "./index.scss";
 export default function Dashboard() {
   const [loading, setLoading] = useState(false);
 
-  const staffData = useSelector((state: StoreStateType) => state.staffData);
+  const StaffAnalysis = useSelector((state: StoreStateType) => state.staffAnalysis);
 
   const dispatch = useDispatch<DispatchType>();
 
   useEffect(() => {
-    if (staffData.staffAmountList.length) {
+    if (StaffAnalysis.staffAmountList.length) {
       return;
     }
     (async () => {
       setLoading(true);
-      await dispatch(fetchStaffData()).unwrap();
+      await dispatch(fetchStaffAnalysis()).unwrap();
       setLoading(false);
     })();
   }, []);
@@ -32,7 +32,7 @@ export default function Dashboard() {
       <div className="dashboard-container">
         {/* 员工数量 */}
         <div className="staff-amount">
-          {staffData.staffAmountList.map((item, index) => {
+          {StaffAnalysis.staffAmountList.map((item, index) => {
             return (
               <StaffAmount
                 key={index}
@@ -45,7 +45,7 @@ export default function Dashboard() {
 
         <div className="chart-wrapper">
           {/* 饼状图 员工性别分布 */}
-          {staffData.pieList.map((item, index) => (
+          {StaffAnalysis.pieList.map((item, index) => (
             <PieChart
               title={item.title}
               renderList={item.renderList}
@@ -54,16 +54,16 @@ export default function Dashboard() {
           ))}
 
           {/* 柱状图 员工年龄分布*/}
-          {staffData.columnList.map((item, index) => (
+          {StaffAnalysis.columnList.map((item, index) => (
             <ColumnChart key={index} {...item} />
           ))}
         </div>
 
         {/* 年龄最大的10名员工 */}
-        {staffData.wordingYearsInfo.renderList?.length && (
+        {StaffAnalysis.wordingYearsInfo.renderList?.length && (
           <OldStaffTable
             title={"工龄最久的10个员工"}
-            data={staffData.wordingYearsInfo.renderList || []}
+            data={StaffAnalysis.wordingYearsInfo.renderList || []}
           />
         )}
       </div>

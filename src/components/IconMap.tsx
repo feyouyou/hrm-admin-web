@@ -16,6 +16,9 @@ import {
   DatabaseOutlined,
   BarChartOutlined,
   LogoutOutlined,
+  CopyOutlined,
+  DeleteOutlined,
+  CloseCircleOutlined,
 } from "@ant-design/icons";
 
 export default {
@@ -36,4 +39,7 @@ export default {
   LeftMenuArrow: <MenuFoldOutlined />,
   RightMenuArrow: <MenuUnfoldOutlined />,
   LogoutOut: <LogoutOutlined />,
+  copy: <CopyOutlined />,
+  del: <DeleteOutlined />,
+  close: <CloseCircleOutlined />,
 };

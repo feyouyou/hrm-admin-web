@@ -30,7 +30,7 @@ export interface PermissionListResponse {
 }
 
 /** 员工信息 */
-export interface StaffDataResponse {
+export interface StaffAnalysisResponse {
   total: number; // 总人数
   /** 入职年限分布 */
   onboardingTimeData: {
@@ -53,4 +53,78 @@ export interface StaffDataResponse {
     name: string; // 姓名
     department: string; // 部门
   }[];
+}
+
+export interface GetStaffListRequest {
+  pageSize: number;
+}
+
+/** 用户列表 */
+export interface GetStaffListRepsponse {
+  staffList: {
+    /** 员工身份 0-普通员工 1-管理员 */
+    identity: number;
+    /** 员工级别 */
+    level: {
+      levelName: string;
+      levelDescription: string;
+    };
+    /** 唯一标识 */
+    id: string;
+    /** 姓名 */
+    userName: string;
+    /** 账户名 */
+    accountName: string;
+    /** 部门信息 */
+    department: {
+      /** 部门名称 */
+      departmentName: string;
+      /** 部门leader */
+      departmentLeader: string;
+    };
+    /** 学历 */
+    education: number;
+    /** 性别 */
+    gender: "男" | "女";
+    /** 创建时间 */
+    onboardingTime: string;
+    /** 身份证号 */
+    idNumber: string;
+    /** 手机号 */
+    mobile: string;
+    /** 薪资 */
+    salary: string;
+    /** 毕业院校 */
+    graduatedSchool: string;
+    /** 头像地址 */
+    avatar: string;
+  }[];
+  staffTotal: number;
+}
+
+/** 添加员工 */
+export interface CreateStaffRequest {
+  userName: string;
+  level: string;
+  department: string;
+  departmentManager: string;
+  education: number;
+  graduatedSchool: string;
+  mobile: string;
+  avatar?: any[];
+}
+
+export interface UpdateStaffReqeust {
+  userName: string;
+  level: string;
+  department: string;
+  departmentManager: string;
+  education: number;
+  graduatedSchool: string;
+  mobile: string;
+  avatar?: any[];
+}
+
+export interface DestroyStaffReqeust {
+  ids: string[]; // 批量删除的用户的id
 }

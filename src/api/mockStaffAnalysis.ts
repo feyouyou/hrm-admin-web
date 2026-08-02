@@ -1,10 +1,9 @@
 import Mock from "mockjs";
-import { RespType, StaffDataResponse } from "./types";
+import { RespType, StaffAnalysisResponse } from "./types";
+import { departmentList } from "@src/common/constants";
 
-const departmentList = ["产品部", "研发部", "运营部", "市场部", "设计部"];
-
-// 员工信息
-Mock.mock("/api/analyzeStaff", "get", (): RespType<StaffDataResponse> => {
+// 员工分析统计数据
+Mock.mock("/api/analyzeStaff", "get", (): RespType<StaffAnalysisResponse> => {
   return {
     code: 0,
     msg: "sucess",

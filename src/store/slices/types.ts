@@ -1,4 +1,4 @@
-export interface StaffDataType {
+export interface StaffAnalysisType {
   /** 员工数量统计 */
   staffAmountList: {
     title: string;

@@ -1,0 +1,12 @@
+.staff-container {
+  height: 100%;
+  word-break: break-all;
+  white-space: normal;
+  position: relative;
+
+  .pagination-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+}

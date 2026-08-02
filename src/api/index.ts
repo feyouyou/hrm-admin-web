@@ -16,6 +16,10 @@ instance.interceptors.request.use((config) => {
     config.headers.Authorization = `Bear ${token}`;
   }
 
+  if (["post", "put", "patch"].includes(config.method?.toLowerCase() || "")) {
+    config.headers["Content-Type"] = "application/json";
+  }
+
   return config;
 });
 

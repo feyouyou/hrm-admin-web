@@ -6,7 +6,8 @@ import { store } from "./store";
 import "./index.scss";
 
 import "./api/mockUserInfo";
-import "./api/mockStaffAmount";
+import "./api/mockStaffAnalysis";
+import "./api/mockStaffData";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
