@@ -5,6 +5,9 @@ import { departmentList, educationList } from "@src/common/constants";
 import { getRandom } from "@src/common/utils";
 import { CreateStaff, UpdateStaff } from "@src/api/apis";
 import { GetStaffListRepsponse } from "@src/api/types";
+import { fetchStaffList } from "@src/store/slices/staffData";
+import { useDispatch } from "react-redux";
+import { DispatchType } from "@src/store";
 
 interface DrawerFormProps {
   editingStaff?: GetStaffListRepsponse["staffList"][0];
@@ -28,6 +31,8 @@ export default function DrawerForm(props: DrawerFormProps) {
   const [isSubmiting, setIsSubmiting] = useState(false);
 
   const [form] = Form.useForm<StaffFormValues>();
+
+  const dispatch = useDispatch<DispatchType>();
 
   // 部门列表
   const departmentMapList = departmentList.map((item) => {
@@ -63,6 +68,7 @@ export default function DrawerForm(props: DrawerFormProps) {
         });
         message.success("修改成功");
         onSubmitSuccess?.();
+        dispatch(fetchStaffList({ pageSize: 10 }));
       } catch (error) {
         message.error("修改失败");
       }
@@ -81,6 +87,7 @@ export default function DrawerForm(props: DrawerFormProps) {
         });
         message.success("添加成功");
         onSubmitSuccess?.();
+        dispatch(fetchStaffList({ pageSize: 10 }));
       } catch (error) {
         message.error("添加失败");
       }
