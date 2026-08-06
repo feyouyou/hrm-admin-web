@@ -35,6 +35,11 @@ export default function SiderBar(props: SiderBarProps) {
   });
 
   const curNavIndex = permissionsList.findIndex((item) => {
+
+    if (location.pathname === "/") {
+      return item.route === "/dashboard";
+    }
+
     return item.route === location.pathname;
   });
 
