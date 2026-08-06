@@ -52,6 +52,14 @@ export default function Staff() {
     setIsOpen(true);
     setEdtingStaff(data);
   };
+  const handleClickAdd = () => {
+    setIsOpen(true);
+  };
+
+  const handleClickClose = () => {
+    setIsOpen(false);
+    setEdtingStaff(undefined);
+  };
 
   useEffect(() => {
     dispatch(fetchStaffList({ pageSize: pageInfo.pageSize }));
@@ -59,7 +67,7 @@ export default function Staff() {
 
   return (
     <div className="staff-container">
-      <SearchForm pageInfo={pageInfo} />
+      <SearchForm pageInfo={pageInfo} onClickAdd={handleClickAdd} />
       <TableList
         staffList={staffData.staffList || []}
         pageInfo={pageInfo}
@@ -82,7 +90,7 @@ export default function Staff() {
         reloadList={undefined}
         isOpen={isOpen}
         pageInfo={pageInfo}
-        onClickClose={() => setIsOpen(false)}
+        onClickClose={handleClickClose}
       />
     </div>
   );
