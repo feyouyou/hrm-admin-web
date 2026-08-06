@@ -6,16 +6,18 @@ import { useDispatch } from "react-redux";
 import { DispatchType } from "@src/store";
 import { fetchStaffList } from "@src/store/slices/staffData";
 import { StaffFormValues } from "../DrawerForm";
+import "./index.scss";
 
 interface SearchFormProps {
   pageInfo: {
     pageNumber: number;
     pageSize: number;
   };
+  onClickAdd?: () => void;
 }
 
 const SearchForm = (props: SearchFormProps) => {
-  const { pageInfo } = props;
+  const { pageInfo, onClickAdd } = props;
 
   const [form] = Form.useForm();
   const dispatch = useDispatch<DispatchType>();
@@ -53,53 +55,69 @@ const SearchForm = (props: SearchFormProps) => {
     debounceSearch({});
   };
 
+  const handleAdd = () => {
+    onClickAdd?.();
+  };
+
   return (
-    <Form
-      form={form}
-      name="advanced_search"
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-      }}
-      onValuesChange={handleValuesChange}
-    >
-      <Space size="large">
-        <Form.Item name="userName" label="姓名">
-          <Input placeholder="请输入姓名" style={{ width: 200 }} allowClear />
-        </Form.Item>
+    <div className="search-form-container">
+      <Form
+        form={form}
+        name="advanced_search"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexGrow: "1",
+        }}
+        onValuesChange={handleValuesChange}
+      >
+        <Space size="large">
+          <Form.Item name="userName" label="姓名">
+            <Input placeholder="请输入姓名" style={{ width: 200 }} allowClear />
+          </Form.Item>
 
-        <Form.Item label="职位类型" name="level">
-          <Select
-            options={[
-              { label: "正式", value: "正式" },
-              { label: "外包", value: "外包" },
-            ]}
-            placeholder="请选择职位类型"
-            style={{ width: 200 }}
-            allowClear
-          />
-        </Form.Item>
+          <Form.Item label="职位类型" name="level">
+            <Select
+              options={[
+                { label: "正式", value: "正式" },
+                { label: "外包", value: "外包" },
+              ]}
+              placeholder="请选择职位类型"
+              style={{ width: 200 }}
+              allowClear
+            />
+          </Form.Item>
 
-        <Form.Item label="部门" name="department">
-          <Select
-            options={departmentMapList}
-            placeholder="请选择部门"
-            style={{ width: 200 }}
-            allowClear
-          />
-        </Form.Item>
-      </Space>
+          <Form.Item label="部门" name="department">
+            <Select
+              options={departmentMapList}
+              placeholder="请选择部门"
+              style={{ width: 200 }}
+              allowClear
+            />
+          </Form.Item>
+        </Space>
 
-      {/* 按钮 */}
+        {/* 按钮 */}
+        <Button
+          onClick={handleClear}
+          style={{
+            marginLeft: "20px",
+          }}
+        >
+          清空
+        </Button>
+      </Form>
       <Button
-        onClick={handleClear}
+        onClick={handleAdd}
         style={{
           marginLeft: "20px",
         }}
+        type="primary"
       >
-        清空
+        新增
       </Button>
-    </Form>
+    </div>
   );
 };
 
