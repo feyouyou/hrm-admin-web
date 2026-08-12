@@ -57,7 +57,8 @@ export default function Login() {
           <div>员工账号：xiaoming，密码：123123</div>
         </div>
       ),
-      duration: 1,
+      duration: 20,
+      showProgress: true,
     });
   }, []);
 
