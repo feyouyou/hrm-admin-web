@@ -1,6 +1,7 @@
 # hrm-admin-web
 
-## Introduction
+## 项目介绍
+
 ```
 这是一个人事管理系统前端页面，数据使用MockJs拦截返回
 构建工具：webpack
@@ -9,20 +10,26 @@ css预处理器：sass
 技术栈：react + react-router + react-redux
 ```
 
-## Project setup
+## 安装依赖
+
 ```
 pnpm install
 ```
 
-### Compiles and hot-reloads for development
+### 启动项目
+
 ```
 pnpm run dev
 ```
 
-### Compiles and minifies for production
+## 编译项目
+
 ```
 pnpm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 测试账号
+
+管理员账号：admin，密码：123123
+
+员工账号：xiaoming，密码：123123

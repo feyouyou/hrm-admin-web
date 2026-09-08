@@ -48,19 +48,19 @@ export default function Login() {
     navigate(backPath);
   };
 
-  useEffect(() => {
-    notification.info({
-      title: "测试账号",
-      description: (
-        <div>
-          <div>管理员账号：admin，密码：123123</div>
-          <div>员工账号：xiaoming，密码：123123</div>
-        </div>
-      ),
-      duration: 20,
-      showProgress: true,
-    });
-  }, []);
+  // useEffect(() => {
+  //   notification.info({
+  //     title: "测试账号",
+  //     description: (
+  //       <div>
+  //         <div>管理员账号：admin，密码：123123</div>
+  //         <div>员工账号：xiaoming，密码：123123</div>
+  //       </div>
+  //     ),
+  //     duration: 20,
+  //     showProgress: true,
+  //   });
+  // }, []);
 
   return (
     <div className="login-container">
